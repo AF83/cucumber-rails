@@ -1,0 +1,137 @@
+# encoding: utf-8
+<%= embed_file('support/edit_warning.txt') %>
+
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
+
+Etant donné /^(?:|que je )suis sur (.+)$/ do |page_name|
+  Given %{I am on #{page_name}}
+end
+
+Lorsque /^(?:|je )vais sur (.+)$/ do |page_name|
+  When %{I go to #{page_name}}
+end
+
+Lorsque /^(?:|j\')appuie sur "([^"]*)"$/ do |button|
+  When %{I press "#{button}"}
+end
+
+Lorsque /^(?:|je )clique sur "([^"]*)"$/ do |link|
+  When %{I follow "#{link}"}
+end
+
+Lorsque /^(?:|je )clique sur "([^"]*)" (?:dans|à l'intérieur de) (.*)$/ do |link, parent|
+  When %{I follow "#{link}" within #{parent}}
+end
+
+Lorsque /^(?:|je )remplis "([^"]*)" avec "([^"]*)"$/ do |field, value|
+  When %{I fill in "#{field}" with "#{value}"}
+end
+
+Lorsque /^(?:|je )saisis "([^"]*)" (?:pour|dans|dans le champ) "([^"]*)"$/ do |value, field|
+  When %{I fill in "#{value}" for "#{field}"}
+end
+
+Lorsque /^(?:|je )saisis les champs suivants ?:$/ do |fields|
+  When %{I fill in the following:}, fields
+end
+
+Lorsque /^(?:|je )sélectionne "([^"]*)" depuis "([^"]*)"$/ do |value, field|
+  When %{I select "#{value}" from "#{field}"}
+end
+
+Lorsque /^(?:|je )sélectionne la date et l'heure "([^"]*)"$/ do |time|
+  When %{I select "#{time}" as the date and time}
+end
+
+Lorsque /^(?:|je )sélectionne la date et l'heure "([^"]*)" pour(?:|le champ) "([^"]*)"$/ do |datetime, datetime_label|
+  When %{I select "#{datetime}" as the "#{datetime_label}" date and time}
+end
+
+Lorsque /^(?:|je )sélectionne l'heure "([^"]*)"$/ do |time|
+  When %{I select "#{time}" as the time}
+end
+
+Lorsque /^(?:|je )sélectionne l'heure "([^"]*)" pour(?:|le champ) "([^"]*)"$/ do |time, time_label|
+  When %{I select "#{time}" as the "#{time_label}" time}
+end
+
+Lorsque /^(?:|je )sélectionne la date "([^"]*)"$/ do |date|
+  When %{I select "#{date}" as the date}
+end
+
+Lorsque /^(?:|je )sélectionne la date "([^"]*)" pour(?:|le champ) "([^"]*)"$/ do |date, date_label|
+  When %{I select "#{date}" as the "#{date_label}" date}
+end
+
+Lorsque /^(?:|je )coche "([^"]*)"$/ do |field|
+  When %{I check "#{field}"}
+end
+
+Lorsque /^(?:|je )décoche "([^"]*)"$/ do |field|
+  When %{I uncheck "#{field}"}
+end
+
+Lorsque /^(?:|je )choisis "([^"]*)"$/ do |field|
+  When %{I choose "#{field}"}
+end
+
+Lorsque /^(?:|je )joins le fichier "([^"]*)" (?:pour|dans|pour le champ|dans le champ) "([^"]*)"$/ do |path, field|
+  When %{I attach the file "#{path}" to "#{field}"}
+end
+
+Alors /^(?:|je )devrais voir "([^"]*)"$/ do |text|
+  Then %{I should see "#{text}"}
+end
+
+Alors /^(?:|je )devrais voir "([^"]*)" (?:dans|à l'intérieur de) "([^"]*)"$/ do |text, selector|
+  Then %{I should see "#{text}" within "#{selector}"}
+end
+
+Alors /^(?:|je )devrais voir \/([^\/]*)\/$/ do |regexp|
+  Then %{I should see /#{regexp}/}
+end
+
+Alors /^(?:|je )devrais voir \/([^\/]*)\/ (?:dans|à l'intérieur de) "([^"]*)"$/ do |regexp, selector|
+  Then %{I should see /#{regexp}/ within "#{selector}"}
+end
+
+Alors /^(?:|je )ne devrais pas voir "([^"]*)"$/ do |text|
+  Then %{I should not see "#{text}"}
+end
+
+Alors /^(?:|je )ne devrais pas voir "([^"]*)" (?:dans|à l'intérieur de) (.*)$/ do |text, selector|
+  Then %{I should not see "#{text}" within #{selector}}
+end
+
+Alors /^(?:|je )ne devrais pas voir \/([^\/]*)\/$/ do |regexp|
+  Then %{I should not see /#{regexp}/}
+end
+
+Alors /^(?:|je )ne devrais pas voir \/([^\/]*)\/ (?:dans|à l'intérieur de) (.*)$/ do |regexp, selector|
+  Then %{I should not see /#{regexp}/ within "#{selector}"}
+end
+
+Alors /^le champ "([^"]*)" devrait contenir "([^"]*)"$/ do |field, value|
+  Then %{the "#{field}" field should contain "#{value}"}
+end
+
+Alors /^le champ "([^"]*)" ne devrait pas contenir "([^"]*)"$/ do |field, value|
+  Then %{the "#{field}" field should not contain "#{value}"}
+end
+
+Alors /^la case "([^"]*)" devrait être cochée$/ do |label|
+  Then %{the "#{label}" checkbox should be checked}
+end
+
+Alors /^la case "([^"]*)" ne devrait pas être cochée$/ do |label|
+  Then %{the "#{label}" checkbox should not be checked}
+end
+
+Alors /^(?:|je )devrais être sur (?:|la page)(.+)$/ do |page_name|
+  Then %{I should be on #{page_name}}
+end
+
+Alors /^afficher la page$/ do
+  Then %{show me the page}
+end
